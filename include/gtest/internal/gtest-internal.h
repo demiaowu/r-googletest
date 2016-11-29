@@ -65,6 +65,7 @@
 #include "gtest/internal/gtest-filepath.h"
 #include "gtest/internal/gtest-type-util.h"
 
+
 // Due to C++ preprocessor weirdness, we need double indirection to
 // concatenate two tokens when one of them is __LINE__.  Writing
 //
@@ -461,6 +462,7 @@ GTEST_API_ TypeId GetTestTypeId();
 
 // Defines the abstract factory interface that creates instances
 // of a Test object.
+// 测试工厂基类
 class TestFactoryBase {
  public:
   virtual ~TestFactoryBase() {}
@@ -481,7 +483,7 @@ class TestFactoryBase {
 template <class TestClass>
 class TestFactoryImpl : public TestFactoryBase {
  public:
-  virtual Test* CreateTest() { return new TestClass; }
+  virtual Test* CreateTest() { return new TestClass; }	//创建一个测试对象
 };
 
 #if GTEST_OS_WINDOWS
@@ -501,6 +503,7 @@ GTEST_API_ AssertionResult IsHRESULTFailure(const char* expr,
 typedef void (*SetUpTestCaseFunc)();
 typedef void (*TearDownTestCaseFunc)();
 
+// 代码位置结构，在哪个文件哪一行
 struct CodeLocation {
   CodeLocation(const string& a_file, int a_line) : file(a_file), line(a_line) {}
 
@@ -1207,18 +1210,19 @@ class NativeArray {
            "  Actual: it does.")
 
 // Expands to the name of the class that implements the given test.
+// 采用##宏拼接测试的类名，test_case_name_test_name_Test
 #define GTEST_TEST_CLASS_NAME_(test_case_name, test_name) \
   test_case_name##_##test_name##_Test
 
 // Helper macro for defining tests.
 #define GTEST_TEST_(test_case_name, test_name, parent_class, parent_id)\
 class GTEST_TEST_CLASS_NAME_(test_case_name, test_name) : public parent_class {\
- public:\
+ public:\	// GTEST_TEST_CLASS_NAME_拼接测试类的类名为：test_case_name_test_name_Test*/
   GTEST_TEST_CLASS_NAME_(test_case_name, test_name)() {}\
  private:\
   virtual void TestBody();\
   static ::testing::TestInfo* const test_info_ GTEST_ATTRIBUTE_UNUSED_;\
-  GTEST_DISALLOW_COPY_AND_ASSIGN_(\
+  GTEST_DISALLOW_COPY_AND_ASSIGN_(\	//采用宏生成拷贝构造函数和赋值运算符的声明，因为是在private，所以是disallow
       GTEST_TEST_CLASS_NAME_(test_case_name, test_name));\
 };\
 \
@@ -1230,9 +1234,12 @@ class GTEST_TEST_CLASS_NAME_(test_case_name, test_name) : public parent_class {\
         (parent_id), \
         parent_class::SetUpTestCase, \
         parent_class::TearDownTestCase, \
-        new ::testing::internal::TestFactoryImpl<\
-            GTEST_TEST_CLASS_NAME_(test_case_name, test_name)>);\
+        new ::testing::internal::TestFactoryImpl<\	//创建一个测试工厂类，它可以创建需要测试的测试生成为类对象
+            GTEST_TEST_CLASS_NAME_(test_case_name, test_name)>);\	//上面的整个都在展开TEST(FactorialTest, Negative)
 void GTEST_TEST_CLASS_NAME_(test_case_name, test_name)::TestBody()
+//TEST(FactorialTest, Negative) 这部分用于之前的展开，后面大括号的内容最后展开成了TestBody的函数体{
+// 	EXPECT_EQ(1, Factorial(-5));
+//}
 
 #endif  // GTEST_INCLUDE_GTEST_INTERNAL_GTEST_INTERNAL_H_
 

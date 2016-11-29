@@ -496,6 +496,8 @@ class DefaultPerThreadTestPartResultReporter
 // the methods under a mutex, as this class is not accessible by a
 // user and the UnitTest class that delegates work to this class does
 // proper locking.
+// 注意UnitTestImpl和UnitTest不是继承的关系，
+// 注意TestCase和UnitTestImpl的关系	—— 是UnitTestImpl的成员函数std::vector<TestCase*> test_cases_;
 class GTEST_API_ UnitTestImpl {
  public:
   explicit UnitTestImpl(UnitTest* parent);

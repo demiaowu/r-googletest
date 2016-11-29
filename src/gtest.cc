@@ -2550,7 +2550,7 @@ TestInfo* MakeAndRegisterTestInfo(
     SetUpTestCaseFunc set_up_tc,
     TearDownTestCaseFunc tear_down_tc,
     TestFactoryBase* factory) {
-  TestInfo* const test_info =
+  TestInfo* const test_info =	//创建一个TestInfo对象，并注册
       new TestInfo(test_case_name, name, type_param, value_param,
                    code_location, fixture_class_id, factory);
   GetUnitTestImpl()->AddTestInfo(set_up_tc, tear_down_tc, test_info);

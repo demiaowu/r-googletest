@@ -368,6 +368,8 @@ GTEST_API_ AssertionResult AssertionFailure(const Message& msg);
 //   TEST_F(FooTest, Baz) { ... }
 //
 // Test is not copyable.
+// 一个Test对象对应一个测试用例TestCase的一个测试，也就是一个test_case_name的一个test_name
+// 实际上也就是一个TEST宏，生成一个test_case_name_test_name_Test类，并且继承Test类
 class GTEST_API_ Test {
  public:
   friend class TestInfo;
@@ -713,15 +715,15 @@ class GTEST_API_ TestInfo {
   friend class internal::UnitTestImpl;
   friend class internal::StreamingListenerTest;
   friend TestInfo* internal::MakeAndRegisterTestInfo(
-      const char* test_case_name,
-      const char* name,
-      const char* type_param,
+      const char* test_case_name,	//测试案例名
+      const char* name,				//测试名
+      const char* type_param,		
       const char* value_param,
       internal::CodeLocation code_location,
       internal::TypeId fixture_class_id,
       Test::SetUpTestCaseFunc set_up_tc,
       Test::TearDownTestCaseFunc tear_down_tc,
-      internal::TestFactoryBase* factory);
+      internal::TestFactoryBase* factory);	
 
   // Constructs a TestInfo object. The newly constructed instance assumes
   // ownership of the factory object.
@@ -1148,6 +1150,7 @@ class GTEST_API_ TestEventListeners {
 //
 // This class is thread-safe as long as the methods are called
 // according to their specification.
+// 单元测试类，单利模式，覆盖整个单元测试
 class GTEST_API_ UnitTest {
  public:
   // Gets the singleton UnitTest object.  The first time this method
@@ -2177,6 +2180,7 @@ bool StaticAssertTypeEq() {
 // code.  GetTestTypeId() is guaranteed to always return the same
 // value, as it always calls GetTypeId<>() from the Google Test
 // framework.
+// 使用GTEST_TEST_构造出测试的类，其中::testing::Test是基类
 #define GTEST_TEST(test_case_name, test_name)\
   GTEST_TEST_(test_case_name, test_name, \
               ::testing::Test, ::testing::internal::GetTestTypeId())

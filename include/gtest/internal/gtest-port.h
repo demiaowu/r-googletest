@@ -866,11 +866,13 @@ using ::std::tuple_size;
 
 // A macro to disallow operator=
 // This should be used in the private: declarations for a class.
+// 使用宏拼出赋值运算符的声明
 #define GTEST_DISALLOW_ASSIGN_(type)\
   void operator=(type const &)
 
 // A macro to disallow copy constructor and operator=
 // This should be used in the private: declarations for a class.
+// 使用宏拼出拷贝构造函数和赋值云算法的声明
 #define GTEST_DISALLOW_COPY_AND_ASSIGN_(type)\
   type(type const &);\
   GTEST_DISALLOW_ASSIGN_(type)
