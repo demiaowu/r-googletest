@@ -10,7 +10,7 @@ Demiao WU's comments on googletest. Note that googlemock is not included.
 
 ## Quickstart
 
-First, using `$ git clone git@github.com:demiaowu/r-googletest.git` clone the codes, Then, import it to your editors. Much more detail about gtest's usages and implementations can be get from References.But some terms shoud be wise to know beforehand, which is as follows:  
+First, using `$ git clone git@github.com:demiaowu/r-googletest.git` clone the codes, Then, import it to your editors. Some terms shoud be wise to know beforehand, which is as follows:  
 
 `单元测试`（UnitTest类)  
 
@@ -20,7 +20,9 @@ First, using `$ git clone git@github.com:demiaowu/r-googletest.git` clone the co
 
 单元测试（UnitTest）是一个最大概念，它会包含很多测试用例（TestCase），而每一个测试用例又会包含很多的测试特例（Test）；在实际的使用表现为，你运行的一个单元测试就是一个UnitTest整体，这个UnitTest一般情况会包含对很多类的测试，每个类又有很多需要测试的地方，那么我们可以采用如下的方式区分和安排测试（可以，但不仅限）:  
 
-一个TestCase对应一个类，每个类需要不同测试的地方（如方法），对应测试特例（Test）
+一个TestCase对应一个类，每个类需要不同测试的地方（如方法），对应测试特例（Test）  
+
+In addation, much more detail about gtest's usages and implementations can be get from References.But 
 
 ## References
 
