@@ -4499,19 +4499,21 @@ class TestCaseNameIs {
 //                   this is not a typed or a type-parameterized test case.
 //   set_up_tc:      pointer to the function that sets up the test case
 //   tear_down_tc:   pointer to the function that tears down the test case
+// 
 TestCase* UnitTestImpl::GetTestCase(const char* test_case_name,
                                     const char* type_param,
                                     Test::SetUpTestCaseFunc set_up_tc,
                                     Test::TearDownTestCaseFunc tear_down_tc) {
   // Can we find a TestCase with the given name?
+  // 查找TestCase，如果没有相应的TestCase，创建一个并Push进入，如果有，直接返回
   const std::vector<TestCase*>::const_iterator test_case =
       std::find_if(test_cases_.begin(), test_cases_.end(),
                    TestCaseNameIs(test_case_name));
 
   if (test_case != test_cases_.end())
-    return *test_case;
+    return *test_case;	//找到了，直接返回
 
-  // No.  Let's create one.
+  // No.  Let's create one. 没有找到，创建一个，并push
   TestCase* const new_test_case =
       new TestCase(test_case_name, type_param, set_up_tc, tear_down_tc);
 
@@ -4644,6 +4646,7 @@ bool UnitTestImpl::RunAllTests() {
       // Runs the tests only if there was no fatal failure during global
       // set-up.
       if (!Test::HasFatalFailure()) {
+		  // 遍历运行所有的测试用例
         for (int test_index = 0; test_index < total_test_case_count();
              test_index++) {
           GetMutableTestCase(test_index)->Run();
@@ -4951,6 +4954,7 @@ void UnitTestImpl::ShuffleTests() {
 }
 
 // Restores the test cases and tests to their order before the first shuffle.
+// 
 void UnitTestImpl::UnshuffleTests() {
   for (size_t i = 0; i < test_cases_.size(); i++) {
     // Unshuffles the tests in each test case.

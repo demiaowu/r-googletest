@@ -644,6 +644,7 @@ class GTEST_API_ UnitTestImpl {
   //   set_up_tc:    pointer to the function that sets up the test case
   //   tear_down_tc: pointer to the function that tears down the test case
   //   test_info:    the TestInfo object
+  // 将TestInfo加入到UnitTest中
   void AddTestInfo(Test::SetUpTestCaseFunc set_up_tc,
                    Test::TearDownTestCaseFunc tear_down_tc,
                    TestInfo* test_info) {
@@ -659,7 +660,8 @@ class GTEST_API_ UnitTestImpl {
       GTEST_CHECK_(!original_working_dir_.IsEmpty())
           << "Failed to get the current working directory.";
     }
-
+	// 拿到TestCase（注意这里如果是没有找到，GetTestCase会创建一个，并push到UnitTestImpl中，其实TestCase的注册就是再这个时候完成），
+	// 将TestInfo加入到对应的TestCase中，调用的是TestCase的AddTestInfo方法
     GetTestCase(test_info->test_case_name(),
                 test_info->type_param(),
                 set_up_tc,
@@ -839,6 +841,7 @@ class GTEST_API_ UnitTestImpl {
 
   // The vector of TestCases in their original order.  It owns the
   // elements in the vector.
+  // 测试用例表
   std::vector<TestCase*> test_cases_;
 
   // Provides a level of indirection for the test case list to allow
@@ -927,7 +930,7 @@ class GTEST_API_ UnitTestImpl {
 // Convenience function for accessing the global UnitTest
 // implementation object.
 inline UnitTestImpl* GetUnitTestImpl() {
-  return UnitTest::GetInstance()->impl();
+  return UnitTest::GetInstance()->impl();	// 获取单元测试的实现对象
 }
 
 #if GTEST_USES_SIMPLE_RE

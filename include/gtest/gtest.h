@@ -368,7 +368,7 @@ GTEST_API_ AssertionResult AssertionFailure(const Message& msg);
 //   TEST_F(FooTest, Baz) { ... }
 //
 // Test is not copyable.
-// 一个Test对象对应一个测试用例TestCase的一个测试，也就是一个test_case_name的一个test_name
+// 一个Test对象对应一个测试用例TestCase的一个测试（就是一个测试特例），也就是一个test_case_name的一个test_name
 // 实际上也就是一个TEST宏，生成一个test_case_name_test_name_Test类，并且继承Test类
 class GTEST_API_ Test {
  public:
@@ -777,6 +777,7 @@ class GTEST_API_ TestInfo {
 // A test case, which consists of a vector of TestInfos.
 //
 // TestCase is not copyable.
+// 测试用例类，包含测试特列列表 std::vector<TestInfo*> test_info_list_;
 class GTEST_API_ TestCase {
  public:
   // Creates a TestCase with the given name.
@@ -1164,7 +1165,7 @@ class GTEST_API_ UnitTest {
   // This method can only be called from the main thread.
   //
   // INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.
-  int Run() GTEST_MUST_USE_RESULT_;
+  int Run() GTEST_MUST_USE_RESULT_;	// 实际运行的是internal::UnitTestImpl::RunAllTests
 
   // Returns the working directory when the first TEST() or TEST_F()
   // was executed.  The UnitTest object owns the string.

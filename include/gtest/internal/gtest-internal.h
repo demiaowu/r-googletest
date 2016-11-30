@@ -469,7 +469,7 @@ class TestFactoryBase {
 
   // Creates a test instance to run. The instance is both created and destroyed
   // within TestInfoImpl::Run()
-  virtual Test* CreateTest() = 0;
+  virtual Test* CreateTest() = 0;	//创建测试特例，在子类中实现
 
  protected:
   TestFactoryBase() {}
@@ -483,7 +483,7 @@ class TestFactoryBase {
 template <class TestClass>
 class TestFactoryImpl : public TestFactoryBase {
  public:
-  virtual Test* CreateTest() { return new TestClass; }	//创建一个测试对象
+  virtual Test* CreateTest() { return new TestClass; }	//创建一个测试特例对象，测试特例类型通过模板参数传递
 };
 
 #if GTEST_OS_WINDOWS
@@ -1216,7 +1216,7 @@ class NativeArray {
 
 // Helper macro for defining tests.
 #define GTEST_TEST_(test_case_name, test_name, parent_class, parent_id)\
-class GTEST_TEST_CLASS_NAME_(test_case_name, test_name) : public parent_class {\
+class GTEST_TEST_CLASS_NAME_(test_case_name, test_name) : public parent_class {\	// parent_calss: ::testing::Test
  public:\	// GTEST_TEST_CLASS_NAME_拼接测试类的类名为：test_case_name_test_name_Test*/
   GTEST_TEST_CLASS_NAME_(test_case_name, test_name)() {}\
  private:\
