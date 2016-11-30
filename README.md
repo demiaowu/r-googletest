@@ -10,7 +10,8 @@ Demiao WU's comments on googletest. Note that googlemock is not included.
 
 ## Quickstart
 
-First, using `$ git clone git@github.com:demiaowu/vimstar.git` clone the code. Then, import it to your editors. Much more detail about gtest's usage and implementations can be get from References.But some terms shoud be wise to know beforehand, which is as follows:
+First, using `$ git clone git@github.com:demiaowu/vimstar.git` clone the codes, Then, import it to your editors. Much more detail about gtest's usages and implementations can be get from References.But some terms shoud be wise to know beforehand, which is as follows:  
+
 &emsp;&emsp;`单元测试`（UnitTest类)  
 
 &emsp;&emsp;`测试用例`（TestCase类）  
@@ -30,10 +31,6 @@ First, using `$ git clone git@github.com:demiaowu/vimstar.git` clone the code. T
 
 [Google Test(GTest)使用方法和源码解析](http://blog.csdn.net/breaksoftware/article/category/6172527)  
 
-
-## License
-
-Vim license, see LICENSE
 
 ## Maintainer
 
