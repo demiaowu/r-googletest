@@ -972,16 +972,18 @@ class GTEST_API_ TestCase {
 //      available.
 //   2. You cannot use ASSERT_* directly in a constructor or
 //      destructor.
+// 全局事件设置，继承Environment，并重写SetUp和TearDown
+// 单元测试的main函数需要加上 testing::AddGlobalTestEnvironment(new FooEnvironment);
 class Environment {
  public:
   // The d'tor is virtual as we need to subclass Environment.
   virtual ~Environment() {}
 
   // Override this to define how to set up the environment.
-  virtual void SetUp() {}
+  virtual void SetUp() {}	//所有测试用例执行之前
 
   // Override this to define how to tear down the environment.
-  virtual void TearDown() {}
+  virtual void TearDown() {}	//所有测试用例执行之后
  private:
   // If you see an error about overriding the following function or
   // about it being private, you have mis-spelled SetUp() as Setup().
@@ -1351,6 +1353,7 @@ class GTEST_API_ UnitTest {
 // translation units and the environments have dependencies among them
 // (remember that the compiler doesn't guarantee the order in which
 // global variables from different translation units are initialized).
+// 将Enviroment添加到UnitTest中
 inline Environment* AddGlobalTestEnvironment(Environment* env) {
   return UnitTest::GetInstance()->AddEnvironment(env);
 }

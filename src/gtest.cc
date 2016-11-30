@@ -4550,6 +4550,7 @@ static void TearDownEnvironment(Environment* env) { env->TearDown(); }
 // parameterized tests first in RegisterParameterizedTests().
 // All other functions called from RunAllTests() may safely assume that
 // parameterized tests are ready to be counted and run.
+// UnitTest的run函数调用RunAllTests执行所有的测试用例
 bool UnitTestImpl::RunAllTests() {
   // Makes sure InitGoogleTest() was called.
   if (!GTestIsInitialized()) {
@@ -4639,6 +4640,7 @@ bool UnitTestImpl::RunAllTests() {
     // Runs each test case if there is at least one test to run.
     if (has_tests_to_run) {
       // Sets up all environments beforehand.
+	  // 运行所有测试执行之前，遍历所有的全局事件SetUp
       repeater->OnEnvironmentsSetUpStart(*parent_);
       ForEach(environments_, SetUpEnvironment);
       repeater->OnEnvironmentsSetUpEnd(*parent_);
@@ -4654,6 +4656,7 @@ bool UnitTestImpl::RunAllTests() {
       }
 
       // Tears down all environments in reverse order afterwards.
+	  // 所有测试执行完之后，遍历所有的全局事件TearDown
       repeater->OnEnvironmentsTearDownStart(*parent_);
       std::for_each(environments_.rbegin(), environments_.rend(),
                     TearDownEnvironment);

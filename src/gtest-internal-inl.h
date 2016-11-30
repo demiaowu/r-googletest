@@ -837,6 +837,8 @@ class GTEST_API_ UnitTestImpl {
 
   // The vector of environments that need to be set-up/torn-down
   // before/after the tests are run.
+  // Environment列表，这样不同人在同时写一份测试代码时可以分别独立的设置自己的全局事件
+  // 只需要在最后的main函数中add进入UnitTest中即可。
   std::vector<Environment*> environments_;
 
   // The vector of TestCases in their original order.  It owns the
