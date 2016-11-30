@@ -2766,16 +2766,20 @@ void TestCase::Run() {
 
   repeater->OnTestCaseStart(*this);
   impl->os_stack_trace_getter()->UponLeavingGTest();
+  // 运行TestCase事件函数
   internal::HandleExceptionsInMethodIfSupported(
       this, &TestCase::RunSetUpTestCase, "SetUpTestCase()");
 
-  const internal::TimeInMillis start = internal::GetTimeInMillis();
+  const internal::TimeInMillis start = internal::GetTimeInMillis();	
+
+  // 执行所有的TestCase的测试特例
   for (int i = 0; i < total_test_count(); i++) {
     GetMutableTestInfo(i)->Run();
   }
   elapsed_time_ = internal::GetTimeInMillis() - start;
 
   impl->os_stack_trace_getter()->UponLeavingGTest();
+  // 运行TestCase事件函数
   internal::HandleExceptionsInMethodIfSupported(
       this, &TestCase::RunTearDownTestCase, "TearDownTestCase()");
 

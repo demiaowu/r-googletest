@@ -1232,8 +1232,8 @@ class GTEST_TEST_CLASS_NAME_(test_case_name, test_name) : public parent_class {\
         #test_case_name, #test_name, NULL, NULL, \
         ::testing::internal::CodeLocation(__FILE__, __LINE__), \
         (parent_id), \
-        parent_class::SetUpTestCase, \
-        parent_class::TearDownTestCase, \
+        parent_class::SetUpTestCase, \		// 注册TestCase事件，如果是TEST宏，那么TestCase事件为空
+        parent_class::TearDownTestCase, \	// ，如果TEST_F，那么就是用户定义的事件函数
         new ::testing::internal::TestFactoryImpl<\	//创建一个测试工厂类，它可以创建需要测试的测试生成为类对象
             GTEST_TEST_CLASS_NAME_(test_case_name, test_name)>);\	//上面的整个都在展开TEST(FactorialTest, Negative)
 void GTEST_TEST_CLASS_NAME_(test_case_name, test_name)::TestBody()

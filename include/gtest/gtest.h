@@ -388,6 +388,7 @@ class GTEST_API_ Test {
   // test in test case Foo.  Hence a sub-class can define its own
   // SetUpTestCase() method to shadow the one defined in the super
   // class.
+  // TestCase事件，在TestCase的所有测试特例执行之前执行
   static void SetUpTestCase() {}
 
   // Tears down the stuff shared by all tests in this test case.
@@ -396,6 +397,7 @@ class GTEST_API_ Test {
   // test in test case Foo.  Hence a sub-class can define its own
   // TearDownTestCase() method to shadow the one defined in the super
   // class.
+  // TestCase事件，在TestCase的所有测试特例执行完之后执行
   static void TearDownTestCase() {}
 
   // Returns true iff the current test has a fatal failure.
@@ -2220,7 +2222,8 @@ bool StaticAssertTypeEq() {
 //     EXPECT_EQ(0, a_.size());
 //     EXPECT_EQ(1, b_.size());
 //   }
-
+// 注意test_fixture是宏构造的类的父类，所以这里面和TEST的区别，TEST_F的test_fixture不能乱写
+// 这样就可以实现TestCase事件
 #define TEST_F(test_fixture, test_name)\
   GTEST_TEST_(test_fixture, test_name, test_fixture, \
               ::testing::internal::GetTypeId<test_fixture>())
