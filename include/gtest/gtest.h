@@ -431,9 +431,11 @@ class GTEST_API_ Test {
   Test();
 
   // Sets up the test fixture.
+  // 测试特例事件
   virtual void SetUp();
 
   // Tears down the test fixture.
+  // 测试特例事件
   virtual void TearDown();
 
  private:

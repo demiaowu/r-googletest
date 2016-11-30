@@ -2467,6 +2467,7 @@ void Test::Run() {
 
   internal::UnitTestImpl* const impl = internal::GetUnitTestImpl();
   impl->os_stack_trace_getter()->UponLeavingGTest();
+  // 运行测试特例事件SetUp
   internal::HandleExceptionsInMethodIfSupported(this, &Test::SetUp, "SetUp()");
   // We will run the test only if SetUp() was successful.
   if (!HasFatalFailure()) {
@@ -2479,6 +2480,7 @@ void Test::Run() {
   // always call TearDown(), even if SetUp() or the test body has
   // failed.
   impl->os_stack_trace_getter()->UponLeavingGTest();
+  // 运行测试特例事件TearDown
   internal::HandleExceptionsInMethodIfSupported(
       this, &Test::TearDown, "TearDown()");
 }
@@ -2639,7 +2641,7 @@ void TestInfo::Run() {
   // Notifies the unit test event listeners that a test is about to start.
   repeater->OnTestStart(*this);
 
-  const TimeInMillis start = internal::GetTimeInMillis();
+  const TimeInMillis start = internal::GetTimeInMillis();	// 统计时间，开始
 
   impl->os_stack_trace_getter()->UponLeavingGTest();
 
@@ -2661,7 +2663,7 @@ void TestInfo::Run() {
   internal::HandleExceptionsInMethodIfSupported(
       test, &Test::DeleteSelf_, "the test fixture's destructor");
 
-  result_.set_elapsed_time(internal::GetTimeInMillis() - start);
+  result_.set_elapsed_time(internal::GetTimeInMillis() - start);	//统计事件，结束，记下时间差
 
   // Notifies the unit test event listener that a test has just finished.
   repeater->OnTestEnd(*this);
