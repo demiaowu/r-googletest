@@ -22,7 +22,7 @@ First, using `$ git clone git@github.com:demiaowu/r-googletest.git` clone the co
 
 一个TestCase对应一个类，每个类需要不同测试的地方（如方法），对应测试特例（Test）  
 
-In addation, much more detail about gtest's usages and implementations can be get from References.But 
+In addation, much more detail about gtest's usages and implementations can be get from References.
 
 ## References
 
