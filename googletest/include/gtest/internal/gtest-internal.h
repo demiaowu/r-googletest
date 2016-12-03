@@ -130,8 +130,10 @@ char (&IsNullLiteralHelper(...))[2];  // NOLINT
 // passing non-POD classes through ellipsis (...).
 # define GTEST_IS_NULL_LITERAL_(x) false
 #else
+// 测试x是不是null
 # define GTEST_IS_NULL_LITERAL_(x) \
-    (sizeof(::testing::internal::IsNullLiteralHelper(x)) == 1)
+    ( sizeof(::testing::internal::IsNullLiteralHelper(x)) == 1 )	
+	
 #endif  // GTEST_ELLIPSIS_NEEDS_POD_
 
 // Appends the user-supplied message to the Google-Test-generated message.

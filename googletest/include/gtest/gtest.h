@@ -1420,6 +1420,8 @@ GTEST_API_ AssertionResult CmpHelperEQ(const char* lhs_expression,
 // lhs_is_null_literal is true iff the first argument to ASSERT_EQ()
 // is a null pointer literal.  The following default implementation is
 // for lhs_is_null_literal being false.
+// 如果{ASSERT|EXPECT}_EQ的val1是一个null指针，那么lhs_is_null_literal为true
+// 这个是false的实现，下面有一个模板特化true的实现
 template <bool lhs_is_null_literal>
 class EqHelper {
  public:
@@ -1438,8 +1440,8 @@ class EqHelper {
   //
   // Even though its body looks the same as the above version, we
   // cannot merge the two, as it will make anonymous enums unhappy.
-  static AssertionResult Compare(const char* lhs_expression,
-                                 const char* rhs_expression,
+  static AssertionResult Compare(const char* lhs_expression,	// #val1
+                                 const char* rhs_expression,	// #val2
                                  BiggestInt lhs,
                                  BiggestInt rhs) {
     return CmpHelperEQ(lhs_expression, rhs_expression, lhs, rhs);

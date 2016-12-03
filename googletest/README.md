@@ -252,7 +252,7 @@ This section discusses how to make your own changes to Google Test.
 
 To make sure your changes work as intended and don't break existing
 functionality, you'll want to compile and run Google Test's own tests.
-or that you can use CMake:
+For that you can use CMake:
 
     mkdir mybuild
     cd mybuild

@@ -1,4 +1,4 @@
-// Copyright 2005, Google Inc.
+ï»¿// Copyright 2005, Google Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -866,13 +866,13 @@ using ::std::tuple_size;
 
 // A macro to disallow operator=
 // This should be used in the private: declarations for a class.
-// Ê¹ÓÃºêÆ´³ö¸³ÖµÔËËã·ûµÄÉùÃ÷
+// ä½¿ç”¨å®æ‹¼å‡ºèµ‹å€¼è¿ç®—ç¬¦çš„å£°æ˜
 #define GTEST_DISALLOW_ASSIGN_(type)\
   void operator=(type const &)
 
 // A macro to disallow copy constructor and operator=
 // This should be used in the private: declarations for a class.
-// Ê¹ÓÃºêÆ´³ö¿½±´¹¹Ôìº¯ÊıºÍ¸³ÖµÔÆËã·¨µÄÉùÃ÷
+// ä½¿ç”¨å®æ‹¼å‡ºæ‹·è´æ„é€ å‡½æ•°å’Œèµ‹å€¼äº‘ç®—æ³•çš„å£°æ˜
 #define GTEST_DISALLOW_COPY_AND_ASSIGN_(type)\
   type(type const &);\
   GTEST_DISALLOW_ASSIGN_(type)
@@ -1007,7 +1007,7 @@ namespace internal {
 // A secret type that Google Test users don't know about.  It has no
 // definition on purpose.  Therefore it's impossible to create a
 // Secret object, which is what we want.
-class Secret;
+class Secret;	//åªå£°æ˜äº†ï¼Œå¹¶æ²¡æœ‰å®šä¹‰
 
 // The GTEST_COMPILE_ASSERT_ macro can be used to verify that a compile time
 // expression is true. For example, you could use it to verify the

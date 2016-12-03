@@ -1439,8 +1439,8 @@ AssertionResult CmpHelperEQ(const char* lhs_expression,
                             const char* rhs_expression,
                             BiggestInt lhs,
                             BiggestInt rhs) {
-  if (lhs == rhs) {
-    return AssertionSuccess();
+  if (lhs == rhs) {	// 比较val1和val2
+    return AssertionSuccess();	// 返回AssertionResult(true);
   }
 
   return EqFailure(lhs_expression,
