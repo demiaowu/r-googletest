@@ -31,6 +31,7 @@
 
 #include "gtest/gtest.h"
 
+// 连接生成的gtest_main.a的不需要自己手动编写main函数，是因为在链接库中已经有main函数了
 GTEST_API_ int main(int argc, char **argv) {
   printf("Running main() from gtest_main.cc\n");
   testing::InitGoogleTest(&argc, argv);
