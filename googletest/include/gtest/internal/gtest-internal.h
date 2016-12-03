@@ -1105,13 +1105,18 @@ class NativeArray {
 #define GTEST_MESSAGE_AT_(file, line, message, result_type) \
   ::testing::internal::AssertHelper(result_type, file, line, message) \
     = ::testing::Message()
+	// 注意AssertHelper重载了赋值操作 
+	// void AssertHelper::operator=(const Message& message) const 
 
 #define GTEST_MESSAGE_(message, result_type) \
   GTEST_MESSAGE_AT_(__FILE__, __LINE__, message, result_type)
 
+// 注意GTEST_FATAL_FAILURE_有return语句，那么意味着测试用例将在此结束，这也就是EXPECT_*和ASSET_*的区别
+// 注意和GTEST_NONFATAL_FAILURE_比较
 #define GTEST_FATAL_FAILURE_(message) \
   return GTEST_MESSAGE_(message, ::testing::TestPartResult::kFatalFailure)
 
+// 注意GTEST_NONFATAL_FAILURE_没有return语句
 #define GTEST_NONFATAL_FAILURE_(message) \
   GTEST_MESSAGE_(message, ::testing::TestPartResult::kNonFatalFailure)
 
@@ -1194,6 +1199,7 @@ class NativeArray {
   else \
     fail(::testing::internal::GetBoolAssertionFailureMessage(\
         gtest_ar_, text, #actual, #expected).c_str())
+	// fail 替换成 GTEST_NONFATAL_FAILURE_ or  GTEST_FATAL_FAILURE_
 
 #define GTEST_TEST_NO_FATAL_FAILURE_(statement, fail) \
   GTEST_AMBIGUOUS_ELSE_BLOCKER_ \

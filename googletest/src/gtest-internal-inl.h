@@ -1,4 +1,4 @@
-// Copyright 2005, Google Inc.
+ï»¿// Copyright 2005, Google Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -496,8 +496,8 @@ class DefaultPerThreadTestPartResultReporter
 // the methods under a mutex, as this class is not accessible by a
 // user and the UnitTest class that delegates work to this class does
 // proper locking.
-// ×¢ÒâUnitTestImplºÍUnitTest²»ÊÇ¼Ì³ĞµÄ¹ØÏµ£¬
-// ×¢ÒâTestCaseºÍUnitTestImplµÄ¹ØÏµ	¡ª¡ª ÊÇUnitTestImplµÄ³ÉÔ±º¯Êıstd::vector<TestCase*> test_cases_;
+// æ³¨æ„UnitTestImplå’ŒUnitTestä¸æ˜¯ç»§æ‰¿çš„å…³ç³»ï¼Œ
+// æ³¨æ„TestCaseå’ŒUnitTestImplçš„å…³ç³»	â€”â€” æ˜¯UnitTestImplçš„æˆå‘˜å‡½æ•°std::vector<TestCase*> test_cases_;
 class GTEST_API_ UnitTestImpl {
  public:
   explicit UnitTestImpl(UnitTest* parent);
@@ -644,7 +644,7 @@ class GTEST_API_ UnitTestImpl {
   //   set_up_tc:    pointer to the function that sets up the test case
   //   tear_down_tc: pointer to the function that tears down the test case
   //   test_info:    the TestInfo object
-  // ½«TestInfo¼ÓÈëµ½UnitTestÖĞ
+  // å°†TestInfoåŠ å…¥åˆ°UnitTestä¸­
   void AddTestInfo(Test::SetUpTestCaseFunc set_up_tc,
                    Test::TearDownTestCaseFunc tear_down_tc,
                    TestInfo* test_info) {
@@ -660,8 +660,8 @@ class GTEST_API_ UnitTestImpl {
       GTEST_CHECK_(!original_working_dir_.IsEmpty())
           << "Failed to get the current working directory.";
     }
-	// ÄÃµ½TestCase£¨×¢ÒâÕâÀïÈç¹ûÊÇÃ»ÓĞÕÒµ½£¬GetTestCase»á´´½¨Ò»¸ö£¬²¢pushµ½UnitTestImplÖĞ£¬ÆäÊµTestCaseµÄ×¢²á¾ÍÊÇÔÙÕâ¸öÊ±ºòÍê³É£©£¬
-	// ½«TestInfo¼ÓÈëµ½¶ÔÓ¦µÄTestCaseÖĞ£¬µ÷ÓÃµÄÊÇTestCaseµÄAddTestInfo·½·¨
+	// æ‹¿åˆ°TestCaseï¼ˆæ³¨æ„è¿™é‡Œå¦‚æœæ˜¯æ²¡æœ‰æ‰¾åˆ°ï¼ŒGetTestCaseä¼šåˆ›å»ºä¸€ä¸ªï¼Œå¹¶pushåˆ°UnitTestImplä¸­ï¼Œå…¶å®TestCaseçš„æ³¨å†Œå°±æ˜¯å†è¿™ä¸ªæ—¶å€™å®Œæˆï¼‰ï¼Œ
+	// å°†TestInfoåŠ å…¥åˆ°å¯¹åº”çš„TestCaseä¸­ï¼Œè°ƒç”¨çš„æ˜¯TestCaseçš„AddTestInfoæ–¹æ³•
     GetTestCase(test_info->test_case_name(),
                 test_info->type_param(),
                 set_up_tc,
@@ -837,13 +837,13 @@ class GTEST_API_ UnitTestImpl {
 
   // The vector of environments that need to be set-up/torn-down
   // before/after the tests are run.
-  // EnvironmentÁĞ±í£¬ÕâÑù²»Í¬ÈËÔÚÍ¬Ê±Ğ´Ò»·İ²âÊÔ´úÂëÊ±¿ÉÒÔ·Ö±ğ¶ÀÁ¢µÄÉèÖÃ×Ô¼ºµÄÈ«¾ÖÊÂ¼ş
-  // Ö»ĞèÒªÔÚ×îºóµÄmainº¯ÊıÖĞadd½øÈëUnitTestÖĞ¼´¿É¡£
+  // Environmentåˆ—è¡¨ï¼Œè¿™æ ·ä¸åŒäººåœ¨åŒæ—¶å†™ä¸€ä»½æµ‹è¯•ä»£ç æ—¶å¯ä»¥åˆ†åˆ«ç‹¬ç«‹çš„è®¾ç½®è‡ªå·±çš„å…¨å±€äº‹ä»¶
+  // åªéœ€è¦åœ¨æœ€åçš„mainå‡½æ•°ä¸­addè¿›å…¥UnitTestä¸­å³å¯ã€‚
   std::vector<Environment*> environments_;
 
   // The vector of TestCases in their original order.  It owns the
   // elements in the vector.
-  // ²âÊÔÓÃÀı±í
+  // æµ‹è¯•ç”¨ä¾‹è¡¨
   std::vector<TestCase*> test_cases_;
 
   // Provides a level of indirection for the test case list to allow
@@ -932,7 +932,7 @@ class GTEST_API_ UnitTestImpl {
 // Convenience function for accessing the global UnitTest
 // implementation object.
 inline UnitTestImpl* GetUnitTestImpl() {
-  return UnitTest::GetInstance()->impl();	// »ñÈ¡µ¥Ôª²âÊÔµÄÊµÏÖ¶ÔÏó
+  return UnitTest::GetInstance()->impl();	// è·å–å•å…ƒæµ‹è¯•çš„å®ç°å¯¹è±¡
 }
 
 #if GTEST_USES_SIMPLE_RE

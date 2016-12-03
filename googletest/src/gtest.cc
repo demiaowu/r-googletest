@@ -371,6 +371,7 @@ AssertHelper::~AssertHelper() {
 
 // Message assignment, for assertion streaming support.
 void AssertHelper::operator=(const Message& message) const {
+	// 添加测试片段的结果
   UnitTest::GetInstance()->
     AddTestPartResult(data_->type, data_->file, data_->line,
                       AppendUserMessage(data_->message, message),

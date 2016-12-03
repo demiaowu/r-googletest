@@ -1,4 +1,4 @@
-// Copyright 2008, Google Inc.
+﻿// Copyright 2008, Google Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -44,14 +44,15 @@ namespace testing {
 // assertion or an explicit FAIL(), ADD_FAILURE(), or SUCCESS()).
 //
 // Don't inherit from TestPartResult as its destructor is not virtual.
+// 一个测试片段的测试结构——一个TEST中的一个测试句子
 class GTEST_API_ TestPartResult {
  public:
   // The possible outcomes of a test part (i.e. an assertion or an
   // explicit SUCCEED(), FAIL(), or ADD_FAILURE()).
   enum Type {
-    kSuccess,          // Succeeded.
-    kNonFatalFailure,  // Failed but the test can continue.
-    kFatalFailure      // Failed and the test should be terminated.
+    kSuccess,          // 成功Succeeded.	
+    kNonFatalFailure,  // 失败，但是测试还可以继续，对应EXPECT_* Failed but the test can continue.
+    kFatalFailure      // 失败，但是测试不在继续，对应ASSERT_* Failed and the test should be terminated.
   };
 
   // C'tor.  TestPartResult does NOT have a default constructor.
@@ -108,7 +109,7 @@ class GTEST_API_ TestPartResult {
 
   // The name of the source file where the test part took place, or
   // "" if the source file is unknown.
-  std::string file_name_;
+  std::string file_name_; 
   // The line in the source file where the test part took place, or -1
   // if the line number is unknown.
   int line_number_;

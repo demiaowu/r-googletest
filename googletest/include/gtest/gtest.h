@@ -1,4 +1,4 @@
-// Copyright 2005, Google Inc.
+ï»¿// Copyright 2005, Google Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -368,8 +368,8 @@ GTEST_API_ AssertionResult AssertionFailure(const Message& msg);
 //   TEST_F(FooTest, Baz) { ... }
 //
 // Test is not copyable.
-// Ò»¸öTest¶ÔÏó¶ÔÓ¦Ò»¸ö²âÊÔÓÃÀıTestCaseµÄÒ»¸ö²âÊÔ£¨¾ÍÊÇÒ»¸ö²âÊÔÌØÀı£©£¬Ò²¾ÍÊÇÒ»¸ötest_case_nameµÄÒ»¸ötest_name
-// Êµ¼ÊÉÏÒ²¾ÍÊÇÒ»¸öTESTºê£¬Éú³ÉÒ»¸ötest_case_name_test_name_TestÀà£¬²¢ÇÒ¼Ì³ĞTestÀà
+// ä¸€ä¸ªTestå¯¹è±¡å¯¹åº”ä¸€ä¸ªæµ‹è¯•ç”¨ä¾‹TestCaseçš„ä¸€ä¸ªæµ‹è¯•ï¼ˆå°±æ˜¯ä¸€ä¸ªæµ‹è¯•ç‰¹ä¾‹ï¼‰ï¼Œä¹Ÿå°±æ˜¯ä¸€ä¸ªtest_case_nameçš„ä¸€ä¸ªtest_name
+// å®é™…ä¸Šä¹Ÿå°±æ˜¯ä¸€ä¸ªTESTå®ï¼Œç”Ÿæˆä¸€ä¸ªtest_case_name_test_name_Testç±»ï¼Œå¹¶ä¸”ç»§æ‰¿Testç±»
 class GTEST_API_ Test {
  public:
   friend class TestInfo;
@@ -388,7 +388,7 @@ class GTEST_API_ Test {
   // test in test case Foo.  Hence a sub-class can define its own
   // SetUpTestCase() method to shadow the one defined in the super
   // class.
-  // TestCaseÊÂ¼ş£¬ÔÚTestCaseµÄËùÓĞ²âÊÔÌØÀıÖ´ĞĞÖ®Ç°Ö´ĞĞ
+  // TestCaseäº‹ä»¶ï¼Œåœ¨TestCaseçš„æ‰€æœ‰æµ‹è¯•ç‰¹ä¾‹æ‰§è¡Œä¹‹å‰æ‰§è¡Œ
   static void SetUpTestCase() {}
 
   // Tears down the stuff shared by all tests in this test case.
@@ -397,7 +397,7 @@ class GTEST_API_ Test {
   // test in test case Foo.  Hence a sub-class can define its own
   // TearDownTestCase() method to shadow the one defined in the super
   // class.
-  // TestCaseÊÂ¼ş£¬ÔÚTestCaseµÄËùÓĞ²âÊÔÌØÀıÖ´ĞĞÍêÖ®ºóÖ´ĞĞ
+  // TestCaseäº‹ä»¶ï¼Œåœ¨TestCaseçš„æ‰€æœ‰æµ‹è¯•ç‰¹ä¾‹æ‰§è¡Œå®Œä¹‹åæ‰§è¡Œ
   static void TearDownTestCase() {}
 
   // Returns true iff the current test has a fatal failure.
@@ -431,11 +431,11 @@ class GTEST_API_ Test {
   Test();
 
   // Sets up the test fixture.
-  // ²âÊÔÌØÀıÊÂ¼ş
+  // æµ‹è¯•ç‰¹ä¾‹äº‹ä»¶
   virtual void SetUp();
 
   // Tears down the test fixture.
-  // ²âÊÔÌØÀıÊÂ¼ş
+  // æµ‹è¯•ç‰¹ä¾‹äº‹ä»¶
   virtual void TearDown();
 
  private:
@@ -719,8 +719,8 @@ class GTEST_API_ TestInfo {
   friend class internal::UnitTestImpl;
   friend class internal::StreamingListenerTest;
   friend TestInfo* internal::MakeAndRegisterTestInfo(
-      const char* test_case_name,	//²âÊÔ°¸ÀıÃû
-      const char* name,				//²âÊÔÃû
+      const char* test_case_name,	//æµ‹è¯•æ¡ˆä¾‹å
+      const char* name,				//æµ‹è¯•å
       const char* type_param,		
       const char* value_param,
       internal::CodeLocation code_location,
@@ -781,7 +781,7 @@ class GTEST_API_ TestInfo {
 // A test case, which consists of a vector of TestInfos.
 //
 // TestCase is not copyable.
-// ²âÊÔÓÃÀıÀà£¬°üº¬²âÊÔÌØÁĞÁĞ±í std::vector<TestInfo*> test_info_list_;
+// æµ‹è¯•ç”¨ä¾‹ç±»ï¼ŒåŒ…å«æµ‹è¯•ç‰¹åˆ—åˆ—è¡¨ std::vector<TestInfo*> test_info_list_;
 class GTEST_API_ TestCase {
  public:
   // Creates a TestCase with the given name.
@@ -976,18 +976,18 @@ class GTEST_API_ TestCase {
 //      available.
 //   2. You cannot use ASSERT_* directly in a constructor or
 //      destructor.
-// È«¾ÖÊÂ¼şÉèÖÃ£¬¼Ì³ĞEnvironment£¬²¢ÖØĞ´SetUpºÍTearDown
-// µ¥Ôª²âÊÔµÄmainº¯ÊıĞèÒª¼ÓÉÏ testing::AddGlobalTestEnvironment(new FooEnvironment);
+// å…¨å±€äº‹ä»¶è®¾ç½®ï¼Œç»§æ‰¿Environmentï¼Œå¹¶é‡å†™SetUpå’ŒTearDown
+// å•å…ƒæµ‹è¯•çš„mainå‡½æ•°éœ€è¦åŠ ä¸Š testing::AddGlobalTestEnvironment(new FooEnvironment);
 class Environment {
  public:
   // The d'tor is virtual as we need to subclass Environment.
   virtual ~Environment() {}
 
   // Override this to define how to set up the environment.
-  virtual void SetUp() {}	//ËùÓĞ²âÊÔÓÃÀıÖ´ĞĞÖ®Ç°
+  virtual void SetUp() {}	//æ‰€æœ‰æµ‹è¯•ç”¨ä¾‹æ‰§è¡Œä¹‹å‰
 
   // Override this to define how to tear down the environment.
-  virtual void TearDown() {}	//ËùÓĞ²âÊÔÓÃÀıÖ´ĞĞÖ®ºó
+  virtual void TearDown() {}	//æ‰€æœ‰æµ‹è¯•ç”¨ä¾‹æ‰§è¡Œä¹‹å
  private:
   // If you see an error about overriding the following function or
   // about it being private, you have mis-spelled SetUp() as Setup().
@@ -1157,7 +1157,7 @@ class GTEST_API_ TestEventListeners {
 //
 // This class is thread-safe as long as the methods are called
 // according to their specification.
-// µ¥Ôª²âÊÔÀà£¬µ¥ÀûÄ£Ê½£¬¸²¸ÇÕû¸öµ¥Ôª²âÊÔ
+// å•å…ƒæµ‹è¯•ç±»ï¼Œå•åˆ©æ¨¡å¼ï¼Œè¦†ç›–æ•´ä¸ªå•å…ƒæµ‹è¯•
 class GTEST_API_ UnitTest {
  public:
   // Gets the singleton UnitTest object.  The first time this method
@@ -1171,7 +1171,7 @@ class GTEST_API_ UnitTest {
   // This method can only be called from the main thread.
   //
   // INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.
-  int Run() GTEST_MUST_USE_RESULT_;	// Êµ¼ÊÔËĞĞµÄÊÇinternal::UnitTestImpl::RunAllTests
+  int Run() GTEST_MUST_USE_RESULT_;	// å®é™…è¿è¡Œçš„æ˜¯internal::UnitTestImpl::RunAllTests
 
   // Returns the working directory when the first TEST() or TEST_F()
   // was executed.  The UnitTest object owns the string.
@@ -1357,7 +1357,7 @@ class GTEST_API_ UnitTest {
 // translation units and the environments have dependencies among them
 // (remember that the compiler doesn't guarantee the order in which
 // global variables from different translation units are initialized).
-// ½«EnviromentÌí¼Óµ½UnitTestÖĞ
+// å°†Enviromentæ·»åŠ åˆ°UnitTestä¸­
 inline Environment* AddGlobalTestEnvironment(Environment* env) {
   return UnitTest::GetInstance()->AddEnvironment(env);
 }
@@ -1688,7 +1688,7 @@ class GTEST_API_ AssertHelper {
   // Message assignment is a semantic trick to enable assertion
   // streaming; see the GTEST_MESSAGE_ macro below.
   void operator=(const Message& message) const;
-
+  
  private:
   // We put our data in a struct so that the size of the AssertHelper class can
   // be as small as possible.  This is important because gcc is incapable of
@@ -1872,10 +1872,11 @@ class TestWithParam : public Test, public WithParamInterface<T> {
                       GTEST_NONFATAL_FAILURE_)
 #define EXPECT_FALSE(condition) \
   GTEST_TEST_BOOLEAN_(!(condition), #condition, true, false, \
-                      GTEST_NONFATAL_FAILURE_)
+                      GTEST_NONFATAL_FAILURE_)		
 #define ASSERT_TRUE(condition) \
   GTEST_TEST_BOOLEAN_((condition), #condition, false, true, \
-                      GTEST_FATAL_FAILURE_)
+                      GTEST_FATAL_FAILURE_)		// æ³¨æ„ ASSERT_TRUE çš„  GTEST_FATAL_FAILURE_å’Œ
+												//     EXPECT_TRUE  çš„  GTEST_NONFATAL_FAILURE_åŒºåˆ«
 #define ASSERT_FALSE(condition) \
   GTEST_TEST_BOOLEAN_(!(condition), #condition, true, false, \
                       GTEST_FATAL_FAILURE_)
@@ -2188,7 +2189,7 @@ bool StaticAssertTypeEq() {
 // code.  GetTestTypeId() is guaranteed to always return the same
 // value, as it always calls GetTypeId<>() from the Google Test
 // framework.
-// Ê¹ÓÃGTEST_TEST_¹¹Ôì³ö²âÊÔµÄÀà£¬ÆäÖĞ::testing::TestÊÇ»ùÀà
+// ä½¿ç”¨GTEST_TEST_æ„é€ å‡ºæµ‹è¯•çš„ç±»ï¼Œå…¶ä¸­::testing::Testæ˜¯åŸºç±»
 #define GTEST_TEST(test_case_name, test_name)\
   GTEST_TEST_(test_case_name, test_name, \
               ::testing::Test, ::testing::internal::GetTestTypeId())
@@ -2224,8 +2225,8 @@ bool StaticAssertTypeEq() {
 //     EXPECT_EQ(0, a_.size());
 //     EXPECT_EQ(1, b_.size());
 //   }
-// ×¢Òâtest_fixtureÊÇºê¹¹ÔìµÄÀàµÄ¸¸Àà£¬ËùÒÔÕâÀïÃæºÍTESTµÄÇø±ğ£¬TEST_FµÄtest_fixture²»ÄÜÂÒĞ´
-// ÕâÑù¾Í¿ÉÒÔÊµÏÖTestCaseÊÂ¼ş
+// æ³¨æ„test_fixtureæ˜¯å®æ„é€ çš„ç±»çš„çˆ¶ç±»ï¼Œæ‰€ä»¥è¿™é‡Œé¢å’ŒTESTçš„åŒºåˆ«ï¼ŒTEST_Fçš„test_fixtureä¸èƒ½ä¹±å†™
+// è¿™æ ·å°±å¯ä»¥å®ç°TestCaseäº‹ä»¶
 #define TEST_F(test_fixture, test_name)\
   GTEST_TEST_(test_fixture, test_name, test_fixture, \
               ::testing::internal::GetTypeId<test_fixture>())

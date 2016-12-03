@@ -1,4 +1,4 @@
-The non-test part of the code is expected to have 2 failures.
+﻿The non-test part of the code is expected to have 2 failures.
 
 gtest_output_test_.cc:#: Failure
 Value of: false

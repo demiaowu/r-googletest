@@ -10,7 +10,7 @@ Demiao WU's comments on googletest. Note that googlemock is not included.
 
 ## Quickstart
 
-First, using `$ git clone git@github.com:demiaowu/r-googletest.git` clone the codes, Then, import it to your editors. Much more detail about gtest's usages and implementations can be get from References.But some terms shoud be wise to know beforehand, which is as follows:  
+First, using `$ git clone git@github.com:demiaowu/r-googletest.git` clone the codes, Then, import it to your editors. Much more details about gtest's usages and implementations can be got from References.But some terms shoud be wise to know beforehand, which is as follows:  
 
 `单元测试`（UnitTest类)  
 
